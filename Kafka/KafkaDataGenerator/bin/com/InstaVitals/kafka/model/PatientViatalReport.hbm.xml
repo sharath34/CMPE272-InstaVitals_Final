@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated May 10, 2015 3:12:33 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.InstaVitals.kafka.model.PatientViatalReport" table="PATIENTVIATALREPORT">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <one-to-one name="patient" class="com.InstaVitals.kafka.model.Patient"></one-to-one>
+        <one-to-one name="hospital" class="com.InstaVitals.kafka.model.Hospital"></one-to-one>
+        <map name="report" table="PATIENTVIATALREPORT" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <map-key type="java.lang.String"></map-key>
+            <element type="java.lang.String">
+                <column name="REPORT" />
+            </element>
+        </map>
+    </class>
+</hibernate-mapping>
