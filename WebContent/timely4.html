@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Google Chart Example</title>
+   <script src="https://www.google.com/jsapi"></script>
+   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+   <script src="jquery.csv-0.71.js"></script>
+   <script>
+     google.load("visualization", "1", {packages:['corechart']});
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+   // grab the CSV
+   $.get("data.csv", function(csvString) {
+      // transform the CSV string into a 2-dimensional array
+var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+var data = new google.visualization.arrayToDataTable(arrayData);
+var view1= new google.visualization.DataView(data); 
+view1.setColumns([1,6]); 
+var options1 = {
+   title: "Weight",
+   height:230,
+   width:500,
+   is3D:true,
+   bars: 'horizontal',
+   'backgroundColor':{'fill':'none'},
+    
+};
+
+ 
+var chart1 = new google.visualization.LineChart(document.getElementById('Chart_c'));
+chart1.draw(view1, options1);
+ 
+ });
+}
+   </script>
+</head>
+<body>
+ 
+   <div id="Chart_c">
+       
+   </div>
+  
+ </body>
+ <style type="text/css">
+   
+
+
+   #Chart_c{
+ 
+      height:230px;
+      width:500px;
+      position: center;
+      margin: 50px 10px 0 0px;
+      border: 2px ridge black; 
+       background-color: rgba(255,255,255,0.5);
+ 
+   }
+
+
+   
+
+   #main{
+
+     
+         background-repeat: no-repeat;
+        -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 450px;
+  width: 800px;
+  border:4px solid black;
+  background-color: rgba(0,0,0,0.5);
+  
+ 
+   }
+
+   #hold{
+       background-image: url(images/pattern.png);
+      width: 1390px;
+      height: 680px;
+      margin-left: -20px;
+      margin-top: -20px;
+
+   }
+ 
+</style>
+
+</html>
